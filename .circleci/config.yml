@@ -13,7 +13,7 @@ jobs:
           name: Persists file to works space
           command: |
             mkdir workspace
-            echo 'hello world' > tmp/workspace/output.txt
+            echo 'hello world' > /tmp/workspace/output.txt
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
@@ -24,7 +24,7 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - attach_workspace:
-          at: tmp/workspace/
+          at: /tmp/workspace/
       - run:  |
           cat output.txt
 
