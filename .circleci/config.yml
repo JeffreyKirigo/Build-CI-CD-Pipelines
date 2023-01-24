@@ -10,12 +10,11 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - run:
-          name: Persists file to works space
+          name: Persists file to work space
           command: |
-            mkdir workspace
-            echo 'hello world' > workspace/output.txt
+            echo 'hello world' > ~/output.txt
       - persist_to_workspace:
-          root: workspace
+          root: ~/
           paths:
             - output.txt
 
@@ -24,25 +23,15 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - attach_workspace:
-          at: /tmp/workspace/
+          at: ~/
       - run:  |
-          cat output.txt
+          cat ~/output.txt
 
-  say_my_name:
-    # Gets and prints my name from ENV_VARIABLES
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run:
-          name: name
-          command: |
-            echo $CODE_OWNER_VAR is the owner of this repo
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - say_my_name
       - save_hello_world_output
       - print_output_file:
           requires:
