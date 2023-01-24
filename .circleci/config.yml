@@ -24,7 +24,7 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - attach_workspace:
-          at: workspace/
+          at: /tmp/workspace/
       - run:  |
           cat output.txt
 
