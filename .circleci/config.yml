@@ -42,7 +42,8 @@ jobs:
     docker:
       - image: cimg/base:2021.04
     steps:
-      - print_pipeline_id
+      - print_pipeline_id:
+          ID: << pipeline.id >>
 
 
 # Invoke jobs via workflows
