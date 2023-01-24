@@ -23,7 +23,7 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - hello
+      - checkout
       - run:
           name: print hello
           command: "echo Hello"
@@ -33,7 +33,7 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - world
+      - checkout
       - run:
           name: print world
           command: "echo World!"
